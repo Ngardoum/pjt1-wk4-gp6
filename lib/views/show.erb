@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Afficher un Potin</title>
+</head>
+<body>
+  <h1>Potin n°<%= params['id'] %></h1>
+  <p>Auteur : <%= gossip.author %></p>
+  <p>Contenu : <%= gossip.content %></p>
+  <h2>Commentaires</h2>
+  <ul>
+    <% Gossip.comments_for(params['id'].to_i).each do |comment| %>
+      <li><%= comment %></li>
+    <% end %>
+  </ul>
+  <form action="/gossips/<%= params['id'] %>/comments" method="post">
+    Commentaire : <textarea name="comment_content"></textarea><br>
+    <input type="submit" value="Ajouter un commentaire">
+  </form>
+  <a href="/">Retour à l'accueil</a>
+</body>
+</html>
